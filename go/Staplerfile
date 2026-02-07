@@ -16,13 +16,13 @@ provides=('go')
 conflicts=('go')
 
 package() {
-  install -dm755 "$pkgdir/usr/lib"
-  cp -a "$srcdir/go" "$pkgdir/usr/lib/go"
-  install -dm755 "$pkgdir/usr/bin"
-  ln -s "../lib/go/bin/go" "$pkgdir/usr/bin/go"
-  ln -s "../lib/go/bin/gofmt" "$pkgdir/usr/bin/gofmt"
+    install -dm755 "$pkgdir/usr/lib"
+    cp -a "$srcdir/go" "$pkgdir/usr/lib/go"
+    install -dm755 "$pkgdir/usr/bin"
+    ln -s "../lib/go/bin/go" "$pkgdir/usr/bin/go"
+    ln -s "../lib/go/bin/gofmt" "$pkgdir/usr/bin/gofmt"
 }
 
 files() {
-  files-find "/usr/lib/**/*" "/usr/bin/*"
+   files-find "/usr/lib/**/*" "/usr/bin/*"
 }
