@@ -1,5 +1,9 @@
 [repo]
 minVersion = "v0.0.28"
-url = "https://git.neonxp.ru/repo/"
-mirrors = []
+url = "git://git.neonxp.ru/repo"
+mirrors = [
+    "https://altlinux.space/neonxp/stplr-repo.git",
+    "https://gitverse.ru/neonxp/stplr-repo.git",
+    "https://github.com/neonxp/stplr-repo",
+]
 report_url = "mailto:stplr@list.neonxp.ru?subject={{ .BasePackage }}"
