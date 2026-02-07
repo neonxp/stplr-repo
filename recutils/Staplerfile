@@ -1,0 +1,50 @@
+name="recutils"
+version="1.9"
+release=1
+summary="The GNU recutils are a set of libraries and utilities supporting the Rec format"
+desc="The GNU recutils are a set of libraries and utilities supporting the Rec format: a human-readable, text-based format to store little to medium sized databases."
+maintainer="Alexander NeonXP Kiryukhin <i@neonxp.ru>"
+architectures=("amd64")
+license="GPL-3.0-only"
+sources=("http://gnu.neonxp.ru/recutils/recutils-1.9.tar.gz")
+checksums=("sha256:6301592b0020c14b456757ef5d434d49f6027b8e5f3a499d13362f205c486e0e")
+disable_network=1
+
+build_deps=("make" "gcc" "help2man" "makeinfo")
+
+build() {
+  mv recutils-1.9/* .
+  ./configure --prefix $srcdir/build/
+  make
+  make install
+}
+
+package() {
+  install-binary ./build/bin/csv2rec csv2rec
+  install-binary ./build/bin/rec2csv rec2csv
+  install-binary ./build/bin/recdel recdel
+  install-binary ./build/bin/recfix recfix
+  install-binary ./build/bin/recfmt recfmt
+  install-binary ./build/bin/recinf recinf
+  install-binary ./build/bin/recins recins
+  install-binary ./build/bin/recsel recsel
+  install-binary ./build/bin/recset recset
+
+  install-manual ./build/share/man/man1/csv2rec.1
+  install-manual ./build/share/man/man1/rec2csv.1
+  install-manual ./build/share/man/man1/recdel.1
+  install-manual ./build/share/man/man1/recfix.1
+  install-manual ./build/share/man/man1/recfmt.1
+  install-manual ./build/share/man/man1/recinf.1
+  install-manual ./build/share/man/man1/recins.1
+  install-manual ./build/share/man/man1/recsel.1
+  install-manual ./build/share/man/man1/recset.1
+
+  install-library ./build/lib/librec.so.1.0.0
+  install -Dm644 ./build/include/rec.h ${pkgdir}/usr/include/rec.h
+}
+
+files() {
+  files-find-binary
+  files-find "/usr/share/man/**/man1/*"
+}
