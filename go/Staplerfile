@@ -5,15 +5,15 @@ summary="Go programming language"
 desc="Go is an open source programming language that makes it easy to build simple, reliable, and efficient software."
 homepage="https://go.dev/"
 maintainer="Alexander NeonXP Kiryukhin <i@neonxp.ru>"
-architectures=("amd64")
+architectures=('amd64' 'arm64' 'arm6' '386' 'riscv64')
 license="BSD-3-Clause"
-sources=("https://dl.google.com/go/go1.25.7.linux-amd64.tar.gz")
-checksums=("sha256:12e6d6a191091ae27dc31f6efc630e3a3b8ba409baf3573d955b196fdf086005")
+sources=("https://dl.google.com/go/go$version.linux-$ARCH.tar.gz")
+checksums=("SKIP")
 disable_network=1
 
 deps=("glibc")
-provides=('go')
-conflicts=('go')
+provides=('go' 'golang')
+conflicts=('go' 'golang' 'golang-bin' 'golang-git')
 
 package() {
     install -dm755 "$pkgdir/usr/lib"
@@ -21,8 +21,10 @@ package() {
     install -dm755 "$pkgdir/usr/bin"
     ln -s "../lib/go/bin/go" "$pkgdir/usr/bin/go"
     ln -s "../lib/go/bin/gofmt" "$pkgdir/usr/bin/gofmt"
+    install-license "$srcdir/go/LICENSE"
 }
 
 files() {
-   files-find "/usr/lib/**/*" "/usr/bin/*"
+    files-find-binary
+    files-find "/usr/lib/**/*"
 }
