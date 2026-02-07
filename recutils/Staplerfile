@@ -13,38 +13,38 @@ disable_network=1
 build_deps=("make" "gcc" "help2man" "makeinfo")
 
 build() {
-  mv recutils-1.9/* .
-  ./configure --prefix $srcdir/build/
-  make
-  make install
+    mv recutils-1.9/* .
+    ./configure --prefix $srcdir/build/
+    make
+    make install
 }
 
 package() {
-  install-binary ./build/bin/csv2rec csv2rec
-  install-binary ./build/bin/rec2csv rec2csv
-  install-binary ./build/bin/recdel recdel
-  install-binary ./build/bin/recfix recfix
-  install-binary ./build/bin/recfmt recfmt
-  install-binary ./build/bin/recinf recinf
-  install-binary ./build/bin/recins recins
-  install-binary ./build/bin/recsel recsel
-  install-binary ./build/bin/recset recset
+    install-binary $srcdir/build/bin/csv2rec
+    install-binary $srcdir/build/bin/rec2csv
+    install-binary $srcdir/build/bin/recdel
+    install-binary $srcdir/build/bin/recfix
+    install-binary $srcdir/build/bin/recfmt
+    install-binary $srcdir/build/bin/recinf
+    install-binary $srcdir/build/bin/recins
+    install-binary $srcdir/build/bin/recsel
+    install-binary $srcdir/build/bin/recset
 
-  install-manual ./build/share/man/man1/csv2rec.1
-  install-manual ./build/share/man/man1/rec2csv.1
-  install-manual ./build/share/man/man1/recdel.1
-  install-manual ./build/share/man/man1/recfix.1
-  install-manual ./build/share/man/man1/recfmt.1
-  install-manual ./build/share/man/man1/recinf.1
-  install-manual ./build/share/man/man1/recins.1
-  install-manual ./build/share/man/man1/recsel.1
-  install-manual ./build/share/man/man1/recset.1
+    install-manual $srcdir/build/share/man/man1/csv2rec.1
+    install-manual $srcdir/build/share/man/man1/rec2csv.1
+    install-manual $srcdir/build/share/man/man1/recdel.1
+    install-manual $srcdir/build/share/man/man1/recfix.1
+    install-manual $srcdir/build/share/man/man1/recfmt.1
+    install-manual $srcdir/build/share/man/man1/recinf.1
+    install-manual $srcdir/build/share/man/man1/recins.1
+    install-manual $srcdir/build/share/man/man1/recsel.1
+    install-manual $srcdir/build/share/man/man1/recset.1
 
-  install-library ./build/lib/librec.so.1.0.0
-  install -Dm644 ./build/include/rec.h ${pkgdir}/usr/include/rec.h
+    install-library $srcdir/build/lib/librec.so.1.0.0
+    install -Dm644 $srcdir/build/include/rec.h $pkgdir/usr/include/rec.h
 }
 
 files() {
-  files-find-binary
-  files-find "/usr/share/man/**/man1/*"
+    files-find-binary
+    files-find "/usr/share/man/**/man1/*" "/usr/include/*" "/usr/lib64/*"
 }
