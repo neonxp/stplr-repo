@@ -1,5 +1,5 @@
 [repo]
 minVersion = "v0.0.28"
-url = "https://git.neonxp.ru/repo"
+url = "https://git.neonxp.ru/repo/"
 mirrors = []
 report_url = "mailto:stplr@list.neonxp.ru?subject={{ .BasePackage }}"
