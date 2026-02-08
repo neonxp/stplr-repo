@@ -20,10 +20,10 @@
 ## Установка репозитория
 
 1. Сначала нужно установить пакетный менеджер Stapler —
-   https://stplr.dev/docs/intro
+   [https://stplr.dev/docs/intro](https://stplr.dev/docs/intro)
 2. Добавление этого репозитория в Stapler:
 
-    ```sh
+    ```
     stplr repo add neonxp.ru git://git.neonxp.ru/repo
     ```
 
