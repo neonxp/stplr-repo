@@ -16,7 +16,7 @@
 ## Установка репозитория
 
 1. Сначала нужно установить пакетный менеджер Stapler —
-   https://stplr.dev/docs/guide
+   https://stplr.dev/docs/intro
 2. Добавление этого репозитория в Stapler:
 
     ```sh
