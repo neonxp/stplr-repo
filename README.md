@@ -13,6 +13,10 @@
 Для заказа нужного вам пакета - пишите в группу рассылки репозитория:
 [mailto:stplr@list.neonxp.ru](mailto:stplr@list.neonxp.ru)
 
+Для подписки на список рассылки репозитория отправьте любое письмо на адрес
+[mailto:stplr+subscribe@list.neonxp.ru](mailto:stplr+subscribe@list.neonxp.ru),
+а дальше, следуйте присланной инструкции.
+
 ## Установка репозитория
 
 1. Сначала нужно установить пакетный менеджер Stapler —
