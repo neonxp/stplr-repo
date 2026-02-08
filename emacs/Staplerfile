@@ -1,0 +1,48 @@
+name="emacs"
+version="30.2"
+release=1
+summary="The GNU Emacs are extensible, customizable, self-documenting real-time display editor."
+desc="The GNU Emacs are extensible, customizable, self-documenting real-time display editor."
+maintainer="Alexander NeonXP Kiryukhin <i@neonxp.ru>"
+architectures=("amd64")
+license="GPL-3.0-only"
+sources=("http://gnu.neonxp.ru/emacs/emacs-$version.tar.xz")
+checksums=("sha256:b3f36f18a6dd2715713370166257de2fae01f9d38cfe878ced9b1e6ded5befd9")
+disable_network=1
+
+provides=('emacs' 'ebrowse' 'emacsclient' 'etags')
+conflicts=('emacs' 'emacs-bin' 'emacs-git')
+
+deps=('libtree-sitter' 'libXpm' 'libgif' 'libtiff6' 'libgnutls30')
+
+build_deps=("make" "gcc" "help2man" "makeinfo" "libtree-sitter-devel" "libXpm-devel" "libgif-devel" "libtiff-devel" "libgnutls-devel")
+
+build() {
+    mv emacs-* emacs
+    cd emacs
+    ./configure --prefix $srcdir/dist --with-pgtk --with-tree-sitter --with-json
+    make
+    make install
+}
+
+package() {
+    for i in ebrowse  emacs  emacs-$version  emacsclient  etags; do
+        install-binary $srcdir/dist/bin/$i
+    done;
+
+    for i in ctags.1.gz  ebrowse.1.gz  emacs.1.gz  emacsclient.1.gz  etags.1.gz; do
+        install-manual $srcdir/dist/share/man/man1/$i
+    done;
+
+    install -Dm644 $srcdir/dist/include/emacs-module.h $pkgdir/usr/include/emacs-module.h
+
+    install-systemd-user $srcdir/dist/lib/systemd/user/emacs.service
+
+    for i in emacsclient.desktop emacsclient-mail.desktop emacs.desktop emacs-mail.desktop; do
+        install-desktop $srcdir/dist/share/applications/$i
+    done;
+}
+
+files() {
+    files-find "/**/*"
+}
