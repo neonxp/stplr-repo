@@ -1,5 +1,7 @@
 # Stapler репозиторий NeonXP
 
+[![🌱 Organic Code -- Code written by human](https://oc.neonxp.ru/organiccode.svg)](https://oc.neonxp.ru)
+
 В этом репозитории три основных группы софта:
 
 1. GNU софт
@@ -47,4 +49,3 @@ stplr install recutils
 - Пост в блоге про Stapler и этот репозиторий: [https://neonxp.ru/posts/2025-02-08-stplr/](https://neonxp.ru/posts/2025-02-08-stplr/)
 - Сайт Stapler: [https://stplr.dev/](https://stplr.dev)
 - Репозиторий Aides: [https://aides.space/](https://aides.space/)
-
