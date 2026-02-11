@@ -1,0 +1,88 @@
+name="nvim"
+version="0.11.6"
+release=1
+summary="Vim-fork focused on extensibility and usability"
+desc="Neovim is a project that seeks to aggressively refactor Vim in order to:
+    Simplify maintenance and encourage contributions
+    Split the work between multiple developers
+    Enable advanced UIs without modifications to the core
+    Maximize extensibility"
+maintainer="Alexander NeonXP Kiryukhin <i@neonxp.ru>"
+architectures=("amd64")
+license="Apache-2.0"
+sources=("https://github.com/neovim/neovim/archive/refs/tags/v$version.tar.gz")
+checksums=("sha256:d1c8e3f484ed1e231fd5f48f53b7345b628e52263d5eef489bb8b73ca8d90fca")
+#disable_network=1 # Because nvim downloads tree-sitter packages from shithub
+
+provides=('nvim' 'neovim')
+conflicts=('nvim' 'neovim' 'neovim-bin' 'neovim-git')
+
+deps=(
+	'libluv'
+	'libutf8proc3'
+	'libuv'
+	'lua5.1-module-lpeg'
+	'libluajit'
+	'libmsgpack-c'
+	'tree-sitter-c'
+	'tree-sitter-lua'
+	'tree-sitter-markdown'
+	#'tree-sitter-query'
+	'tree-sitter-vimdoc'
+	#'tree-sitter-vim'
+	'libtree-sitter'
+	'unibilium'
+)
+
+
+build_deps=(
+	'make'
+	'cmake'
+	'git'
+	'ninja-build'
+	'unzip'
+	'libluv-devel'
+	'libutf8proc-devel'
+	'libuv-devel'
+	'libluajit-devel'
+	'libmsgpack-c-devel'
+	'libtree-sitter-devel'
+	'unibilium-devel'
+)
+
+
+
+build() {
+    cd neovim-$version
+	make CMAKE_BUILD_TYPE=Release
+    make CMAKE_INSTALL_PREFIX=$srcdir/dist install
+}
+
+package() {
+    for i in nvim; do
+        install-binary $srcdir/dist/bin/$i
+    done;
+
+    for i in nvim.1; do
+        install-manual $srcdir/dist/share/man/man1/$i
+    done;
+
+	for i in c.so  lua.so  markdown_inline.so  markdown.so  query.so  vimdoc.so  vim.so; do
+		install-library $srcdir/dist/lib64/nvim/parser/$i nvim/parser/$i
+	done;
+
+    for i in nvim.desktop; do
+        install-desktop $srcdir/dist/share/applications/$i
+    done;
+
+	install-pixmap $srcdir/dist/share/icons/hicolor/128x128/apps/nvim.png
+
+	# Too many files for manual install
+	# TODO use `install`
+	mkdir -p "$pkgdir/usr/share/nvim" 
+	cp -r "$srcdir/dist/share/nvim" "$pkgdir/usr/share/nvim"
+}
+
+files() {
+    files-find "/**/*"
+}
