@@ -1,0 +1,47 @@
+name="openide-bin"
+version="253.28294.334.2"
+release=1
+summary="OpenIDE открытая среда разработки для профессионалов"
+desc="penIDE — бесплатная лицензионно чистая IDE на базе IntelliJ IDEA Platform с открытым исходным кодом. Вся инфраструктура для сборки и работы OpenIDE расположена в России. Для отправки статистики, поиска обновлений, подключения плагинов и т.д. среда разработки обращается только к серверам на территории РФ. В маркетплейсе OpenIDE с самого первого дня доступно более 300 плагинов."
+homepage="https://openide.ru/"
+maintainer="Alexander NeonXP Kiryukhin <i@neonxp.ru>"
+architectures=('amd64')
+license="AGPL-3"
+sources=(
+	"https://download.openide.ru/$version/openIDE-$version.tar.gz"
+	"local:///openide.desktop"
+)
+checksums=("SKIP" "SKIP")
+disable_network=1
+provides=('openide')
+
+build() {
+	mv openIDE-* openide
+}
+
+package() {
+	install -d $pkgdir/opt/openide
+	install -d $pkgdir/usr/bin
+	cd openide
+	cp -aR bin lib jbr plugins license LICENSE.txt build.txt product-info.json "$pkgdir/opt/openide/"
+	
+	install-license LICENSE.txt openide/LICENSE.txt
+
+	ln -s "/opt/openide/bin/openide.sh" "$pkgdir/usr/bin/openide"
+
+	install -Dm644 bin/openide.png $pkgdir/usr/share/pixmaps/openide.png
+	install -Dm644 bin/openide.svg $pkgdir/usr/share/pixmaps/openide.svg
+	install-desktop $srcdir/openide.desktop
+	chmod -R ugo+rX $pkgdir/opt
+}
+files() {
+	files-find \
+		"/opt/openide" \
+		"/opt/openide/**/*" \
+		"/usr/bin/openide" \
+		"/usr/share/applications/openide.desktop" \
+		"/usr/share/licenses/openide" \
+		"/usr/share/licenses/openide/*" \
+		"/usr/share/pixmaps/openide.png" \
+		"/usr/share/pixmaps/openide.svg"
+}
