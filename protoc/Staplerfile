@@ -1,5 +1,5 @@
 name="protoc"
-version="33.5"
+version="34.1"
 release=1
 summary="Protocol Buffers - Google's data interchange format"
 

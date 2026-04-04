@@ -21,8 +21,6 @@ deps=(
 	'libluv'
 	'libutf8proc3'
 	'libuv'
-	'lua5.1-module-lpeg'
-	'libluajit'
 	'libmsgpack-c'
 	'tree-sitter-c'
 	'tree-sitter-lua'
@@ -44,7 +42,6 @@ build_deps=(
 	'libluv-devel'
 	'libutf8proc-devel'
 	'libuv-devel'
-	'libluajit-devel'
 	'libmsgpack-c-devel'
 	'libtree-sitter-devel'
 	'unibilium-devel'
@@ -54,33 +51,35 @@ build_deps=(
 
 build() {
     cd neovim-$version
-	make CMAKE_BUILD_TYPE=Release
-    make CMAKE_INSTALL_PREFIX=$srcdir/dist install
+    mkdir -p build
+    cd build
+    cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_SKIP_INSTALL_RPATH=ON -DCMAKE_BUILD_WITH_INSTALL_RPATH=OFF
+    ninja
 }
 
 package() {
-    for i in nvim; do
-        install-binary $srcdir/dist/bin/$i
-    done;
+    # Install binaries from build directory
+    install-binary $srcdir/neovim-$version/build/bin/nvim
 
+    # Install man pages
     for i in nvim.1; do
-        install-manual $srcdir/dist/share/man/man1/$i
+        install-manual $srcdir/neovim-$version/build/runtime/doc/$i
     done;
 
-	for i in c.so  lua.so  markdown_inline.so  markdown.so  query.so  vimdoc.so  vim.so; do
-		install-library $srcdir/dist/lib64/nvim/parser/$i nvim/parser/$i
-	done;
-
-    for i in nvim.desktop; do
-        install-desktop $srcdir/dist/share/applications/$i
+    # Install tree-sitter parsers
+    for i in c.so  lua.so  markdown_inline.so  markdown.so  query.so  vimdoc.so  vim.so; do
+        install-library $srcdir/neovim-$version/build/runtime/parser/$i nvim/parser/$i
     done;
 
-	install-pixmap $srcdir/dist/share/icons/hicolor/128x128/apps/nvim.png
+    # Install desktop entry
+    install-desktop $srcdir/neovim-$version/build/runtime/nvim.desktop
 
-	# Too many files for manual install
-	# TODO use `install`
-	mkdir -p "$pkgdir/usr/share/nvim" 
-	cp -r "$srcdir/dist/share/nvim" "$pkgdir/usr/share/nvim"
+    # Install icon
+    install-pixmap $srcdir/neovim-$version/build/runtime/nvim.png
+
+    # Install runtime files (install to correct location)
+    mkdir -p "$pkgdir/usr/share/nvim"
+    cp -r "$srcdir/neovim-$version/build/runtime/nvim" "$pkgdir/usr/share/nvim"
 }
 
 files() {

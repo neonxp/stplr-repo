@@ -6,7 +6,7 @@ desc="The GNU recutils are a set of libraries and utilities supporting the Rec f
 maintainer="Alexander NeonXP Kiryukhin <i@neonxp.ru>"
 architectures=("amd64")
 license="GPL-3.0-only"
-sources=("http://gnu.neonxp.ru/recutils/recutils-$version.tar.gz")
+sources=("https://mirror.yandex.ru/mirrors/gnu/recutils/recutils-$version.tar.gz")
 checksums=("sha256:6301592b0020c14b456757ef5d434d49f6027b8e5f3a499d13362f205c486e0e")
 disable_network=1
 

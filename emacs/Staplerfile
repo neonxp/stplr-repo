@@ -6,7 +6,7 @@ desc="The GNU Emacs are extensible, customizable, self-documenting real-time dis
 maintainer="Alexander NeonXP Kiryukhin <i@neonxp.ru>"
 architectures=("amd64")
 license="GPL-3.0-only"
-sources=("http://gnu.neonxp.ru/emacs/emacs-$version.tar.xz")
+sources=("https://mirror.yandex.ru/mirrors/gnu/emacs/emacs-$version.tar.xz")
 checksums=("sha256:b3f36f18a6dd2715713370166257de2fae01f9d38cfe878ced9b1e6ded5befd9")
 disable_network=1
 
