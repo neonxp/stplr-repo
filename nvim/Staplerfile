@@ -1,5 +1,5 @@
 name="nvim"
-version="0.11.6"
+version="0.12.1"
 release=1
 summary="Vim-fork focused on extensibility and usability"
 desc="Neovim is a project that seeks to aggressively refactor Vim in order to:
@@ -11,7 +11,7 @@ maintainer="Alexander NeonXP Kiryukhin <i@neonxp.ru>"
 architectures=("amd64")
 license="Apache-2.0"
 sources=("https://github.com/neovim/neovim/archive/refs/tags/v$version.tar.gz")
-checksums=("sha256:d1c8e3f484ed1e231fd5f48f53b7345b628e52263d5eef489bb8b73ca8d90fca")
+checksums=("sha256:41898a5073631bc8fd9ac43476b811c05fb3b88ffb043d4fbb9e75e478457336")
 #disable_network=1 # Because nvim downloads tree-sitter packages from shithub
 
 provides=('nvim' 'neovim')
@@ -30,6 +30,8 @@ deps=(
 	#'tree-sitter-vim'
 	'libtree-sitter'
 	'unibilium'
+	'lua5.1'
+	'lua5.1-rocks'
 )
 
 
@@ -45,6 +47,10 @@ build_deps=(
 	'libmsgpack-c-devel'
 	'libtree-sitter-devel'
 	'unibilium-devel'
+	'lua5.1'
+        'lua5.1-module-bit32'
+        'liblua5.1'
+        'liblua5.1-devel'
 )
 
 
