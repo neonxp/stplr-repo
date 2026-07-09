@@ -6,4 +6,4 @@ mirrors = [
     "https://gitverse.ru/neonxp/stplr-repo.git",
     "https://github.com/neonxp/stplr-repo",
 ]
-report_url = "mailto:stplr@list.neonxp.ru?subject={{ .BasePackage }}"
+report_url = "mailto:i@neonxp.ru?subject={{ .BasePackage }}"

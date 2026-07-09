@@ -1,5 +1,5 @@
 name="hugo"
-version="0.155.2"
+version="0.164.0"
 release=1
 summary="The world’s fastest framework for building websites."
 desc="Hugo is a static site generator written in Go, optimized for speed and designed for flexibility. With its advanced templating system and fast asset pipelines, Hugo renders a complete site in seconds, often less."
@@ -7,8 +7,8 @@ homepage="https://gohugo.io/"
 maintainer="Alexander NeonXP Kiryukhin <i@neonxp.ru>"
 architectures=("amd64")
 license="Apache-2.0"
-sources=("https://github.com/gohugoio/hugo/archive/refs/tags/v0.155.2.tar.gz?~name=hugo")
-checksums=("sha256:69803efca258dce295d8965800657b12c95d5e58d016be7131e39ae36bb97797")
+sources=("https://github.com/gohugoio/hugo/archive/refs/tags/v$version.tar.gz?~name=hugo")
+checksums=("SKIP")
 # disable_network=1
 
 provides=('hugo')
