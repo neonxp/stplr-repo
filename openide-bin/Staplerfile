@@ -8,7 +8,7 @@ maintainer="Alexander NeonXP Kiryukhin <i@neonxp.ru>"
 architectures=('amd64')
 license="AGPL-3"
 sources=(
-	"https://download.openide.ru/$version/openIDE-$version.tar.gz"
+	"https://download.openide.ru/$version/openIDE-Pro-$version.tar.gz"
 	"local:///openide.desktop"
 )
 checksums=("SKIP" "SKIP")
