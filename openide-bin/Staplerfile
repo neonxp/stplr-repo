@@ -1,5 +1,5 @@
 name="openide-bin"
-version="253.28294.334.1022"
+version="253.28294.334.22"
 release=1
 summary="OpenIDE открытая среда разработки для профессионалов"
 desc="penIDE — бесплатная лицензионно чистая IDE на базе IntelliJ IDEA Platform с открытым исходным кодом. Вся инфраструктура для сборки и работы OpenIDE расположена в России. Для отправки статистики, поиска обновлений, подключения плагинов и т.д. среда разработки обращается только к серверам на территории РФ. В маркетплейсе OpenIDE с самого первого дня доступно более 300 плагинов."
@@ -8,7 +8,7 @@ maintainer="Alexander NeonXP Kiryukhin <i@neonxp.ru>"
 architectures=('amd64')
 license="AGPL-3"
 sources=(
-	"https://download.openide.ru/$version/openIDE-Pro-$version.tar.gz"
+	"https://download.openide.ru/$version/openIDE-$version.tar.gz"
 	"local:///openide.desktop"
 )
 checksums=("SKIP" "SKIP")
