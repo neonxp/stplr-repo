@@ -1,0 +1,71 @@
+name="qbr"
+version="0.1.1"
+release=1
+architectures=("amd64")
+maintainer="Vadim Kalinnikov <moose@ylsoftware.com>"
+homepage="https://github.com/moose-kazan/qbr"
+sources=("git+https://github.com/moose-kazan/qbr.git?~rev=v${version}")
+checksums=("SKIP")
+license="LGPL-2.1"
+summary="Simple book reader, written on C++ with Qt6 toolkit."
+desc="Simple book reader, written on C++ with Qt6 toolkit.
+It support many popular ebook formats like FB2, FB3 and EPUB."
+
+provides=('qbr')
+conflicts=('qbr')
+
+compatible_with=(
+    "almalinux"
+    "altlinux"
+    "debian"
+    "ubuntu"
+)
+
+# Tested on AlmaLinux  10.2
+build_deps_almalinux=(
+    "epel-release"
+    "qt6-qtbase-devel"
+    "qt6-qttools-devel"
+    "qt6-qtwebengine-devel"
+    "libzip-devel"
+    "libzip-tools"
+)
+
+# Tested on P11
+build_deps_altlinux=(
+    "build-essential"
+    "cmake"
+    "libzip-devel"
+    "qt6-base-devel"
+    "qt6-webengine-devel"
+    "qt6-tools-devel"
+)
+
+# Tested on Debian 13
+build_deps_debian=(
+    "debhelper"
+    "cmake"
+    "qt6-webengine-dev"
+    "libzip-dev"
+    "zipmerge"
+    "zipcmp"
+    "ziptool"
+    "qt6-tools-dev"
+    "qt6-webengine-dev-tools"
+    "libgl1-mesa-dev"
+    "libvulkan-dev"
+    "qt6-l10n-tools"
+    "qt6-tools-dev-tools"
+    "libqt6opengl6-dev"
+)
+
+build() {
+    cd qbr
+    cmake -S . build
+    cmake --build build
+}
+
+package() {
+    cd qbr
+    cmake --install build --prefix ${pkgdir}/usr
+}
