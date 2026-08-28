@@ -28,7 +28,7 @@
 2. Добавление этого репозитория в Stapler:
 
     ```
-    stplr repo add neonxp.ru git://git.neonxp.ru/repo
+    stplr repo add neonxp.ru https://gitrepo.ru/neonxp/repo.git
     ```
 
 ## Установка приложений
